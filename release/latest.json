@@ -1,0 +1,11 @@
+{
+  "version": "1.0.0",
+  "notes": "Mise a jour automatique, ouverture du dossier d'une application, et le repertoire se construit depuis les depots GitHub.",
+  "pub_date": "2026-09-15T18:48:42Z",
+  "platforms": {
+    "windows-x86_64": {
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTUmJkaDRmVXZKOE9XZGlaNUpWc0I3YTNmejJEWW9PTmphWDJJNUJUNHVFdkc3MWVKa0c0U2tPenBoQVVGUkpFWmRTUWkwWDdSdFEyNkxBOVNPem5xUktCaWNNSGUzNndzPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg5NDk4MDg1CWZpbGU6U1RMS01fMS4wLjBfeDY0LXNldHVwLmV4ZQpRdnYzd1VYRnRSYmZ0UW9zZ2ZMODdHeTUyelIyZWRVUEVlTXMrcFlZTTMyZEduMGt1M1hmZXFRRU4wcmdzSk9aaUlxaHBFbUJsRkZtMDg5QTBCZk9DZz09Cg==",
+      "url": "https://github.com/Yurogin/stlkm-hub/releases/latest/download/STLKM-setup.exe"
+    }
+  }
+}
