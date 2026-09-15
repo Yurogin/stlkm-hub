@@ -1,0 +1,4 @@
+# Les installateurs vivent dans les releases, jamais dans le depot :
+# un binaire commite reste dans l'historique pour toujours.
+*.exe
+release/
