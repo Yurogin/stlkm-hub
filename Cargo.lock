@@ -3473,7 +3473,7 @@ checksum = "6ce2be8dc25455e1f91df71bfa12ad37d7af1092ae736f3a6cd0e37bc7810596"
 
 [[package]]
 name = "stlkm-cli"
-version = "1.0.3"
+version = "1.1.0"
 dependencies = [
  "clap",
  "stlkm-core",
@@ -3481,7 +3481,7 @@ dependencies = [
 
 [[package]]
 name = "stlkm-core"
-version = "1.0.3"
+version = "1.1.0"
 dependencies = [
  "directories",
  "flate2",
@@ -3496,7 +3496,7 @@ dependencies = [
 
 [[package]]
 name = "stlkm-gui"
-version = "1.0.3"
+version = "1.1.0"
 dependencies = [
  "serde",
  "serde_json",
