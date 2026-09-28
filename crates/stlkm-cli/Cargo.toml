@@ -1,0 +1,12 @@
+[package]
+name = "stlkm-cli"
+version.workspace = true
+edition.workspace = true
+
+[[bin]]
+name = "stlkm"
+path = "src/main.rs"
+
+[dependencies]
+stlkm-core.workspace = true
+clap.workspace = true

@@ -1,0 +1,395 @@
+:root {
+  --fond: #14110f;
+  --meuble: #1e1a17;
+  --meuble-clair: #272220;
+  --trait: #3a3230;
+  --texte: #f2ece6;
+  --discret: #a2958c;
+  --chaud: #d98c4a;
+  --vert: #6faa6a;
+  --rouge: #c8604f;
+  --rayon: 10px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--fond);
+  color: var(--texte);
+  font: 15px/1.4 "Segoe UI", system-ui, sans-serif;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ── Entête ────────────────────────────────────────────────────────────── */
+
+header {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 14px 22px;
+  border-bottom: 1px solid var(--trait);
+  background: var(--meuble);
+}
+
+h1 {
+  margin: 0;
+  font-size: 20px;
+  letter-spacing: 0.22em;
+  font-weight: 600;
+}
+
+nav {
+  display: flex;
+  gap: 6px;
+}
+
+.onglet {
+  background: none;
+  border: 1px solid transparent;
+  color: var(--discret);
+  padding: 7px 18px;
+  border-radius: var(--rayon);
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.onglet:hover {
+  color: var(--texte);
+}
+
+.onglet.actif {
+  background: var(--meuble-clair);
+  border-color: var(--trait);
+  color: var(--texte);
+}
+
+#version {
+  color: var(--discret);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  margin-left: -16px;
+}
+
+#maj-hub {
+  margin-left: auto;
+  padding: 7px 14px;
+}
+
+/* Sans nouvelle version à proposer, c'est « Actualiser » qui pousse à droite. */
+#maj-hub[hidden] + #actualiser {
+  margin-left: auto;
+}
+
+#actualiser {
+  padding: 7px 14px;
+}
+
+#journal {
+  margin: 0;
+  color: var(--discret);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  max-width: 46%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Vues ──────────────────────────────────────────────────────────────── */
+
+main {
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+  display: flex;
+}
+
+.vue {
+  display: none;
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+  flex-direction: column;
+}
+
+.vue.active {
+  display: flex;
+}
+
+/* ── Store ─────────────────────────────────────────────────────────────── */
+
+.grille {
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 18px;
+  padding: 22px;
+  align-content: start;
+}
+
+.fiche {
+  background: var(--meuble);
+  border: 1px solid var(--trait);
+  border-radius: var(--rayon);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 230px;
+}
+
+.fiche.tourne {
+  border-color: var(--vert);
+}
+
+.fiche header {
+  all: unset;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.emoji {
+  font-size: 40px;
+  line-height: 1;
+}
+
+.titre {
+  font-size: 21px;
+  overflow-wrap: anywhere;
+  font-weight: 600;
+  margin: 0;
+}
+
+.resume {
+  color: var(--discret);
+  margin: 0;
+  flex: 1;
+  /* Une longue description ne doit pas repousser les boutons hors de la fiche. */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+}
+
+/* Un chemin ou une URL n'a pas d'espace : sans ça, il pousse la fenêtre. */
+.details,
+.trouve .details {
+  overflow-wrap: anywhere;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--discret);
+}
+
+.puce {
+  border: 1px solid var(--trait);
+  border-radius: 999px;
+  padding: 2px 10px;
+}
+
+.puce.pose {
+  border-color: var(--vert);
+  color: var(--vert);
+}
+
+.puce.tourne {
+  background: var(--vert);
+  border-color: var(--vert);
+  color: var(--fond);
+}
+
+.puce.neuf {
+  border-color: var(--chaud);
+  color: var(--chaud);
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border-radius: var(--rayon);
+  border: 1px solid var(--trait);
+  background: var(--meuble-clair);
+  color: var(--texte);
+  padding: 9px 16px;
+}
+
+button:hover:not(:disabled) {
+  border-color: var(--discret);
+}
+
+button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+button.primaire {
+  background: var(--chaud);
+  border-color: var(--chaud);
+  color: #1a1310;
+  font-weight: 600;
+}
+
+button.danger:hover:not(:disabled) {
+  border-color: var(--rouge);
+  color: var(--rouge);
+}
+
+/* ── Atelier ───────────────────────────────────────────────────────────── */
+
+.barre {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 16px 22px;
+  border-bottom: 1px solid var(--trait);
+}
+
+.barre input {
+  flex: 1;
+  background: var(--meuble);
+  border: 1px solid var(--trait);
+  border-radius: var(--rayon);
+  color: var(--texte);
+  padding: 9px 14px;
+  font: inherit;
+}
+
+#compte {
+  color: var(--discret);
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.liste {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 12px 22px 22px;
+}
+
+.section {
+  margin: 22px 0 4px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--discret);
+}
+
+.section:first-child {
+  margin-top: 6px;
+}
+
+.trouve {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px 18px;
+  align-items: center;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--trait);
+}
+
+.trouve .nom {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.trouve .details {
+  color: var(--discret);
+  font-size: 13px;
+}
+
+.trouve .alerte {
+  color: var(--chaud);
+}
+
+.trouve.connu .nom::after {
+  content: " · au catalogue";
+  color: var(--vert);
+  font-size: 13px;
+  font-weight: 400;
+}
+
+/* ── Confirmation ──────────────────────────────────────────────────────── */
+
+dialog {
+  background: var(--meuble);
+  color: var(--texte);
+  border: 1px solid var(--trait);
+  border-radius: var(--rayon);
+  padding: 24px;
+  min-width: 460px;
+  max-width: 640px;
+}
+
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+dialog h2 {
+  margin: 0 0 14px;
+  font-size: 19px;
+}
+
+dialog label {
+  display: block;
+  color: var(--discret);
+  font-size: 13px;
+  margin: 18px 0 0;
+}
+
+dialog input {
+  width: 100%;
+  margin-top: 6px;
+  background: var(--meuble-clair);
+  border: 1px solid var(--trait);
+  border-radius: var(--rayon);
+  color: var(--texte);
+  padding: 9px 12px;
+  font: inherit;
+}
+
+dialog .actions {
+  justify-content: flex-end;
+  margin-top: 22px;
+}
+
+.bloquant {
+  color: var(--rouge);
+}
+
+.diff {
+  font-family: "Cascadia Mono", Consolas, monospace;
+  font-size: 13px;
+  color: var(--discret);
+}
+
+.vide {
+  color: var(--discret);
+  padding: 40px 22px;
+}

@@ -2,3 +2,13 @@
 # un binaire commite reste dans l'historique pour toujours.
 *.exe
 release/
+
+# Le dossier de travail de cargo
+/target
+
+# Les programmes compilés du hub : refaits par Recompiler.bat
+/bin
+
+# Clés de signature des mises à jour : jamais dans le dépôt
+*.key
+*.key.pub

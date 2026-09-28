@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>STLKM Launcher</title>
+    <meta
+      name="description"
+      content="Installe, lance et mets à jour les applications STLKM depuis une seule fenêtre."
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --fond: #0a0a0c;
+        --meuble: #151417;
+        --trait: #2a2529;
+        --texte: #f3f4f6;
+        /* Un gris tiré vers l'orange plutôt qu'un gris neutre. */
+        --discret: #a39b93;
+        --chaud: #ee8b38;
+        --chaud-clair: #ff9d42;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: var(--fond);
+        color: var(--texte);
+        font-family: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+        display: flex;
+        flex-direction: column;
+        padding-inline: 20px;
+      }
+
+      /* ── Halo et grille de fond ─────────────────────────────────────── */
+
+      .fond {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        overflow: hidden;
+        pointer-events: none;
+      }
+
+      .halo {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: min(600px, 120vw);
+        aspect-ratio: 1;
+        max-width: 100%;
+        transform: translate(-50%, -50%);
+        background: rgba(238, 139, 56, 0.1);
+        border-radius: 50%;
+        filter: blur(140px);
+        animation: respire 4s infinite ease-in-out;
+      }
+
+      .grille {
+        position: absolute;
+        inset: 0;
+        background-image: linear-gradient(to right, #ffffff05 1px, transparent 1px),
+          linear-gradient(to bottom, #ffffff05 1px, transparent 1px);
+        background-size: 4rem 4rem;
+      }
+
+      @keyframes respire {
+        0%,
+        100% {
+          opacity: 0.35;
+          transform: translate(-50%, -50%) scale(1);
+        }
+        50% {
+          opacity: 0.65;
+          transform: translate(-50%, -50%) scale(1.08);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .halo {
+          animation: none;
+        }
+      }
+
+      /* ── Entête ─────────────────────────────────────────────────────── */
+
+      header {
+        padding-block: 32px;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        font-size: 15px;
+        opacity: 0.9;
+      }
+
+      /* ── Le centre ──────────────────────────────────────────────────── */
+
+      main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        gap: 28px;
+        padding-block: 48px;
+      }
+
+      /* L'icône de l'application : un meuble à deux tiroirs. */
+      .logo {
+        width: 116px;
+        height: 116px;
+        border-radius: 26px;
+        background: var(--meuble);
+        border: 1px solid rgba(238, 139, 56, 0.35);
+        box-shadow: 0 0 35px rgba(238, 139, 56, 0.2),
+          inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 14px;
+        padding: 24px;
+      }
+
+      .tiroir {
+        height: 22px;
+        border-radius: 8px;
+        background: linear-gradient(to right, var(--chaud), var(--chaud-clair), var(--chaud));
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(2.2rem, 7vw, 3.5rem);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        text-wrap: balance;
+      }
+
+      .accroche {
+        margin: 0;
+        max-width: 32ch;
+        color: var(--discret);
+        font-size: 1.05rem;
+        line-height: 1.5;
+        text-wrap: balance;
+      }
+
+      /* ── Le bouton ──────────────────────────────────────────────────── */
+
+      .telecharger {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        padding: 18px 40px;
+        border-radius: 18px;
+        background: linear-gradient(to right, var(--chaud), #d97121);
+        color: #1a1310;
+        font-size: 1.15rem;
+        font-weight: 800;
+        text-decoration: none;
+        box-shadow: 0 0 25px rgba(238, 139, 56, 0.35);
+        transition: box-shadow 0.3s, transform 0.3s;
+      }
+
+      .telecharger:hover,
+      .telecharger:focus-visible {
+        background: linear-gradient(to right, var(--chaud-clair), var(--chaud));
+        box-shadow: 0 0 45px rgba(238, 139, 56, 0.6);
+        transform: translateY(-2px);
+      }
+
+      .telecharger svg {
+        width: 22px;
+        height: 22px;
+      }
+
+      :focus-visible {
+        outline: 2px solid var(--chaud-clair);
+        outline-offset: 3px;
+      }
+
+      /* ── Les faits ──────────────────────────────────────────────────── */
+
+      .faits {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px 14px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        color: var(--discret);
+        font-size: 0.9rem;
+      }
+
+      .faits li {
+        border: 1px solid var(--trait);
+        border-radius: 999px;
+        padding: 6px 16px;
+      }
+
+      /* ── Le lien brut ───────────────────────────────────────────────── */
+
+      .adresse {
+        max-width: 100%;
+        overflow-x: auto;
+        margin: 0;
+        padding: 12px 16px;
+        border: 1px solid var(--trait);
+        border-radius: 12px;
+        background: var(--meuble);
+        color: var(--discret);
+        font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+        font-size: 0.78rem;
+        white-space: nowrap;
+      }
+
+      footer {
+        padding-block: 32px;
+        text-align: center;
+        color: var(--discret);
+        font-size: 0.85rem;
+      }
+
+      footer a {
+        color: var(--discret);
+        text-decoration-color: var(--trait);
+      }
+
+      footer a:hover {
+        color: var(--chaud-clair);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="fond">
+      <div class="halo"></div>
+      <div class="grille"></div>
+    </div>
+
+    <header>STLKM Launcher</header>
+
+    <main>
+      <div class="logo" aria-hidden="true">
+        <div class="tiroir"></div>
+        <div class="tiroir"></div>
+      </div>
+
+      <h1>STLKM Launcher</h1>
+
+      <p class="accroche">
+        Installe, lance et mets à jour toutes mes applications depuis une seule
+        fenêtre.
+      </p>
+
+      <a
+        class="telecharger"
+        href="https://github.com/Yurogin/stlkm-hub/releases/latest/download/STLKM-setup.exe"
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2.5"
+            d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+          />
+        </svg>
+        <span>Télécharger pour Windows</span>
+      </a>
+
+      <ul class="faits">
+        <li>Windows 10 et 11</li>
+        <li>moins de 4 Mo</li>
+        <li>Se met à jour tout seul</li>
+      </ul>
+
+      <p class="adresse">
+        https://github.com/Yurogin/stlkm-hub/releases/latest/download/STLKM-setup.exe
+      </p>
+    </main>
+
+    <footer>
+      <a href="https://github.com/Yurogin/stlkm-hub">Le projet sur GitHub</a>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,51 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "STLKM",
+  "version": "1.0.3",
+  "identifier": "fr.stlkm.hub",
+  "build": {
+    "frontendDist": "ui"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "STLKM",
+        "width": 1280,
+        "height": 820,
+        "minWidth": 880,
+        "minHeight": 560,
+        "resizable": true
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:"
+    },
+    "withGlobalTauri": true
+  },
+  "bundle": {
+    "active": true,
+    "targets": [
+      "nsis"
+    ],
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.ico"
+    ],
+    "publisher": "STLKM",
+    "shortDescription": "Le hub de tes projets",
+    "longDescription": "Le répertoire d'applications STLKM : installer, lancer et mettre à jour les projets publiés par STLKM.",
+    "copyright": "STLKM",
+    "category": "DeveloperTool",
+    "createUpdaterArtifacts": true
+  },
+  "plugins": {
+    "updater": {
+      "endpoints": [
+        "https://github.com/Yurogin/stlkm-hub/releases/latest/download/latest.json"
+      ],
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEYwQzk0QjdENzhEODZEOTEKUldTUmJkaDRmVXZKOEhlek1lWXUzWDRrSHBpY0ppeml1d2RMdGdrL2R6d1UvT0l2LzRlb040MGEK"
+    }
+  }
+}

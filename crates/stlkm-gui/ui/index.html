@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>STLKM</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>STLKM</h1>
+      <span id="version" title="version installée"></span>
+      <nav>
+        <button class="onglet actif" data-vue="store">Store</button>
+        <button class="onglet" data-vue="atelier" id="onglet-atelier" hidden>Atelier</button>
+        <button class="onglet" data-vue="mobile" id="onglet-mobile" hidden>Atelier mobile</button>
+      </nav>
+      <button id="maj-hub" class="primaire" hidden></button>
+      <button id="actualiser">Actualiser</button>
+      <p id="journal"></p>
+    </header>
+
+    <main>
+      <section id="store" class="vue active">
+        <div id="grille" class="grille"></div>
+      </section>
+
+      <section id="atelier" class="vue">
+        <div class="barre">
+          <span id="compte"></span>
+          <button id="publier" class="primaire">Publier le répertoire</button>
+        </div>
+        <div class="liste">
+          <div id="dedans"></div>
+        </div>
+      </section>
+      <section id="mobile" class="vue">
+        <div class="barre">
+          <span id="compte-mobile"></span>
+          <button id="jeton-ouvrir">Jeton GitHub</button>
+          <button id="chercher-mobile" class="primaire">Chercher les applis Android</button>
+        </div>
+        <div class="liste">
+          <div id="dedans-mobile"></div>
+        </div>
+      </section>
+    </main>
+
+    <dialog id="confirmation">
+      <h2 id="confirmation-titre"></h2>
+      <div id="confirmation-corps"></div>
+      <label>
+        Message
+        <input id="confirmation-message" type="text" />
+      </label>
+      <div class="actions">
+        <button id="confirmation-non">Annuler</button>
+        <button id="confirmation-oui" class="primaire">Publier</button>
+      </div>
+    </dialog>
+
+    <dialog id="jeton">
+      <h2>Jeton GitHub</h2>
+      <div id="jeton-etat"></div>
+      <p class="details">
+        Sans jeton, GitHub n'accorde que 60 demandes par heure et par connexion —
+        une fouille les épuise. Avec, 5 000. Pour ne lire que des dépôts publics,
+        crée-le <strong>sans cocher aucune permission</strong> : même perdu, il ne
+        donne accès à rien de plus que ce que tout le monde voit déjà.
+      </p>
+      <label>
+        Coller un jeton (vide = l'effacer)
+        <input id="jeton-valeur" type="password" placeholder="github_pat_… ou ghp_…" />
+      </label>
+      <div class="actions">
+        <button id="jeton-fermer">Annuler</button>
+        <button id="jeton-garder" class="primaire">Garder</button>
+      </div>
+    </dialog>
+
+    <script src="app.js"></script>
+  </body>
+</html>
